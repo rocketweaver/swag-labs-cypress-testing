@@ -1,0 +1,11 @@
+{
+  "name": "swag-labs-testing",
+  "version": "1.0.0",
+  "description": "Swag Labs E2E Testing with Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arbhy a.k.a. RocketWeaver",
+  "license": "ISC"
+}
