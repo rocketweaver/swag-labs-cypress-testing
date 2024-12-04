@@ -13,7 +13,7 @@ describe("Valid Cart", () => {
     cy.visit("/");
   });
 
-  it("Validate user can add item to cart", {failOnStatus: false}, () => {
+  it("Validate user can add item to cart", () => {
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
       cy.url().should("eq", "https://www.saucedemo.com/inventory.html");
