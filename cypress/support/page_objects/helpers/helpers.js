@@ -60,7 +60,7 @@ function sortProductPrice(prices, type = "asc") {
 function getProductsAttribute(selectors) {
   const _selectors = {
     container: selectors.container,
-    img: selectors.img,
+    img: selectors.img || null,
     name: selectors.name,
     desc: selectors.desc,
     price: selectors.price,
