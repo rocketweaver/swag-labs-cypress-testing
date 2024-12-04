@@ -20,6 +20,15 @@ function compareProductNamesAndImages(productList) {
   });
 }
 
+function compareShoppingCartBadge(totalItems) {
+  cy.get(".shopping_cart_badge")
+    .should("be.visible")
+    .invoke("text")
+    .then((badgeText) => {
+      expect(Number(badgeText.trim())).to.eq(totalItems);
+    });
+}
+
 function sortProductName(productList, type = "asc") {
   const sortedNames =
     type.toLowerCase() === "desc"
@@ -45,6 +54,8 @@ function getProductsAttribute() {
     button: ".btn_inventory",
   };
 
+  const dataTest = [];
+
   const productList = {
     names: [],
     descriptions: [],
@@ -56,6 +67,19 @@ function getProductsAttribute() {
     return cy
       .wrap($items)
       .each(($item) => {
+        cy.wrap($item)
+          .find("img")
+          .invoke("attr", "data-test")
+          .then((val) => {
+            const removeInventoryItemTxt = val
+              .replace("inventory-item-", "")
+              .trim();
+            const cleanDataTest = removeInventoryItemTxt
+              .replace("-img", "")
+              .trim();
+            dataTest.push(cleanDataTest);
+          });
+
         cy.wrap($item)
           .find(selectors.img)
           .find("img")
@@ -90,12 +114,17 @@ function getProductsAttribute() {
           .should("equal", "Add to cart");
       })
       .then(() => {
-        return productList;
+        return { productList, dataTest };
       });
   });
 }
 
 export class HomePage {
+  constructor() {
+    this._dataTest = [];
+    this._totalItems = 0;
+  }
+
   checkProductList() {
     getProductsAttribute().then((productList) => {
       compareProductNamesAndImages(productList);
@@ -136,6 +165,34 @@ export class HomePage {
           break;
       }
     });
+  }
+
+  addToCart(totalItems = 1) {
+    this._totalItems = totalItems;
+
+    getProductsAttribute().then(({ dataTest }) => {
+      for (let i = 0; i < totalItems; i++) {
+        cy.get(".inventory_item").eq(i).find(".btn_inventory").click();
+        this._dataTest.push(dataTest[i]);
+      }
+
+      compareShoppingCartBadge(totalItems);
+    });
+  }
+
+  nullifyCart() {
+    cy.wrap(this._dataTest)
+      .each((data) => {
+        cy.get(`[data-test="remove-${data}"]`).click();
+        this._totalItems -= 1;
+      })
+      .then(() => {
+        if (this._totalItems <= 0) {
+          cy.get(".shopping_cart_badge").should("not.exist");
+        } else {
+          compareShoppingCartBadge(this._totalItems);
+        }
+      });
   }
 }
 
