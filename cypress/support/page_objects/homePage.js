@@ -1,15 +1,25 @@
-import * as HomePageHelpers from "./helpers/homePageHelpers";
+import * as TestFactories from "./helpers/helpers";
 
 export class HomePage {
   constructor() {
-    this._dataTest = [];
-    this._totalItems = 0;
+    this._selectors = {
+      container: ".inventory_item",
+      name: ".inventory_item_name",
+      img: ".inventory_item_img",
+      desc: ".inventory_item_desc",
+      price: ".inventory_item_price",
+      addToCartButton: ".btn_inventory",
+    };
   }
 
   checkProductList() {
-    HomePageHelpers.getProductsAttribute().then((productList) => {
-      compareProductNamesAndImages(productList);
-    });
+    TestFactories.getProductsAttribute(this._selectors).then(
+      ({ productList }) => {
+        TestFactories.compareProductName(productList.names);
+        TestFactories.compareProductImage(productList.images);
+        TestFactories.isAddToCartButtonExist(this._selectors);
+      }
+    );
   }
 
   sortProduct() {
@@ -25,53 +35,70 @@ export class HomePage {
 
       switch (option) {
         case "Name (A to Z)":
-          HomePageHelpers.getProductsAttribute().then((productList) => {
-            sortProductName(productList);
-          });
+          TestFactories.getProductsAttribute(this._selectors).then(
+            ({ productList }) => {
+              TestFactories.sortProductName(productList.names);
+            }
+          );
           break;
         case "Name (Z to A)":
-          HomePageHelpers.getProductsAttribute().then((productList) => {
-            sortProductName(productList, "desc");
-          });
+          TestFactories.getProductsAttribute(this._selectors).then(
+            ({ productList }) => {
+              TestFactories.sortProductName(productList.names, "desc");
+            }
+          );
           break;
         case "Price (low to high)":
-          HomePageHelpers.getProductsAttribute().then((productList) => {
-            HomePageHelpers.sortProductPrice(productList);
-          });
+          TestFactories.getProductsAttribute(this._selectors).then(
+            ({ productList }) => {
+              TestFactories.sortProductPrice(productList.prices);
+            }
+          );
           break;
         case "Price (high to low)":
-          HomePageHelpers.getProductsAttribute().then((productList) => {
-            HomePageHelpers.sortProductPrice(productList, "desc");
-          });
+          TestFactories.getProductsAttribute(this._selectors).then(
+            ({ productList }) => {
+              TestFactories.sortProductPrice(productList.prices, "desc");
+            }
+          );
           break;
       }
     });
   }
 
   addToCart(totalItems = 1) {
-    this._totalItems = totalItems;
+    const _dataTest = [];
+    const _itemsName = [];
+    const _totalItems = totalItems;
 
-    HomePageHelpers.getProductsAttribute().then(({ dataTest }) => {
-      for (let i = 0; i < totalItems; i++) {
-        cy.get(".inventory_item").eq(i).find(".btn_inventory").click();
-        this._dataTest.push(dataTest[i]);
+    return TestFactories.getProductsAttribute(this._selectors).then(
+      ({ dataTest, productList }) => {
+        for (let i = 0; i < _totalItems; i++) {
+          cy.get(".inventory_item").eq(i).find(".btn_inventory").click();
+          _dataTest.push(dataTest[i]);
+          _itemsName.push(productList.names[i]);
+        }
+
+        TestFactories.compareShoppingCartBadge(_totalItems);
+
+        return cy.wrap({ _dataTest, _itemsName, _totalItems });
       }
-
-      HomePageHelpers.compareShoppingCartBadge(totalItems);
-    });
+    );
   }
 
-  nullifyCart() {
-    cy.wrap(this._dataTest)
+  nullifyCart(totalItems, dataTest) {
+    let _totalItems = totalItems;
+
+    cy.wrap(dataTest)
       .each((data) => {
-        cy.get(`[data-test="remove-${data}"]`).click();
-        this._totalItems -= 1;
+        cy.get(`#remove-${data}`).click();
+        _totalItems -= 1;
       })
       .then(() => {
-        if (this._totalItems <= 0) {
+        if (_totalItems <= 0) {
           cy.get(".shopping_cart_badge").should("not.exist");
         } else {
-          compareShoppingCartBadge(this._totalItems);
+          compareShoppingCartBadge(_totalItems);
         }
       });
   }

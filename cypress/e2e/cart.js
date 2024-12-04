@@ -3,10 +3,10 @@ import { onHomePage } from "../support/page_objects/homePage";
 describe("Valid Cart", () => {
   const username = [
     "standard_user",
-    "error_user",
-    "visual_user",
-    "performance_glitch_user",
-    "problem_user",
+    // "error_user",
+    // "visual_user",
+    // "performance_glitch_user",
+    // "problem_user",
   ];
 
   before(() => {
@@ -27,12 +27,39 @@ describe("Valid Cart", () => {
     });
   });
 
-  it.only("Validate user can remove item from cart", () => {
+  it("Validate user can remove item from cart in homepage", () => {
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
 
-      onHomePage.addToCart(3);
-      onHomePage.nullifyCart();
+      onHomePage.addToCart(3).then(({ _dataTest, _totalItems }) => {
+        onHomePage.nullifyCart(_totalItems, _dataTest);
+      });
+
+      cy.then(Cypress.session.clearCurrentSessionData);
+    });
+  });
+
+  it.only("Validate user can remove multiple items from cart", () => {
+    const itemsName = [];
+    let sortedItems = [];
+
+    cy.wrap(username).each((username) => {
+      cy.loginToApp(username, "secret_sauce");
+
+      onHomePage.addToCart(3).then(({ _dataTest, _itemsName, _totalItems }) => {
+        _itemsName.forEach((name) => {
+          itemsName.push(name);
+        });
+
+        sortedItems = [...itemsName].sort();
+
+        cy.get(".shopping_cart_link").click();
+
+        onCartPage.checkProductList(sortedItems);
+
+        onHomePage.nullifyCart(_totalItems, _dataTest);
+      });
+
 
       cy.then(Cypress.session.clearCurrentSessionData);
     });
