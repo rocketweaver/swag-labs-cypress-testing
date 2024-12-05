@@ -15,8 +15,8 @@ export class HomePage {
   checkProductList() {
     TestFactories.getProductsAttribute(this._selectors).then(
       ({ productList }) => {
-        TestFactories.compareProductName(productList.names);
-        TestFactories.compareProductImage(productList.images);
+        TestFactories.isDatumNotEqual(productList.names);
+        TestFactories.isDatumNotEqual(productList.images);
         TestFactories.isAddToCartButtonExist(this._selectors);
       }
     );

@@ -13,7 +13,7 @@ class CartPage {
   checkProductList() {
     TestFactories.getProductsAttribute(this._selectors).wrap(
       ({ productList }) => {
-        TestFactories.compareProductName(productList.names);
+        TestFactories.isDatumNotEqual(productList.names);
       }
     );
   }

@@ -1,18 +1,8 @@
-function compareProductName(names) {
+function isDatumNotEqual(datum) {
   cy.wrap(null).then(() => {
-    names.forEach((name, index) => {
-      names.slice(index + 1).forEach((otherName) => {
-        expect(name).to.not.equal(otherName);
-      });
-    });
-  });
-}
-
-function compareProductImage(images) {
-  cy.wrap(null).then(() => {
-    images.forEach((img, index) => {
-      images.slice(index + 1).forEach((otherImg) => {
-        expect(img).to.not.equal(otherImg);
+    datum.forEach((data, index) => {
+      datum.slice(index + 1).forEach((otherData) => {
+        expect(data).to.not.equal(otherData);
       });
     });
   });
@@ -127,8 +117,7 @@ function getProductsAttribute(selectors) {
 }
 
 export default {
-  compareProductName,
-  compareProductImage,
+  isDatumNotEqual,
   compareShoppingCartBadge,
   getProductsAttribute,
   isAddToCartButtonExist,
