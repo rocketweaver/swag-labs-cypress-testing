@@ -11,7 +11,7 @@ class CheckoutPage {
   }
 
   checkProductList() {
-    TestFactories.getProductsAttribute(this._selectors).wrap(
+    TestFactories.getProductsAttribute(this._selectors).then(
       ({ productList }) => {
         TestFactories.isDatumNotEqual(productList.names);
       }

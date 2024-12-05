@@ -19,6 +19,18 @@ function isNumberEqual(selector, totalItems) {
     });
 }
 
+function isStringsEqual(firstStrings, secondStrings) {
+  const firstSortedStrings = [...firstStrings].sort();
+  const sortedSecondStrings = [...secondStrings].sort();
+  cy.wrap(firstSortedStrings).should("deep.equal", sortedSecondStrings);
+}
+
+function isNumbersEqual(firstNumbers, secondNumbers) {
+  const sortedFirstNumbers = [...firstNumbers].sort((a, b) => b - a);
+  const sortedSecondNumbers = [...secondNumbers].sort((a, b) => b - a);
+  cy.wrap(sortedFirstNumbers).should("deep.equal", sortedSecondNumbers);
+}
+
 function isElementChildExist(selectors, text) {
   const _selectors = {
     container: selectors.cardContainer,
@@ -26,27 +38,24 @@ function isElementChildExist(selectors, text) {
   };
 
   cy.get(_selectors.container).each((item) => {
-    cy.wrap(item)
-      .find(_selectors.element)
-      .invoke("text")
-      .should("equal", text);
+    cy.wrap(item).find(_selectors.element).invoke("text").should("equal", text);
   });
 }
 
-function isSortedStringsEqual(names, type = "asc") {
-  const sortedNames =
+function isStringsSorted(strings, type = "asc") {
+  const sortedStrings =
     type.toLowerCase() === "desc"
-      ? [...names].sort().reverse()
-      : [...names].sort();
-  cy.wrap(names).should("deep.equal", sortedNames);
+      ? [...strings].sort().reverse()
+      : [...strings].sort();
+  cy.wrap(strings).should("deep.equal", sortedStrings);
 }
 
-function isSortedNumbersEqual(prices, type = "asc") {
-  const sortedPrices =
+function isNumbersSorted(numbers, type = "asc") {
+  const sortedNumbers =
     type.toLowerCase() === "desc"
-      ? [...prices].sort((a, b) => b - a)
-      : [...prices].sort((a, b) => a - b);
-  cy.wrap(prices).should("deep.equal", sortedPrices);
+      ? [...numbers].sort((a, b) => b - a)
+      : [...numbers].sort((a, b) => a - b);
+  cy.wrap(numbers).should("deep.equal", sortedNumbers);
 }
 
 function getProductsAttribute(selectors) {
@@ -101,7 +110,9 @@ function getProductsAttribute(selectors) {
           .find(_selectors.desc)
           .invoke("text")
           .should("not.be.empty")
-          .then((text) => productList.descriptions.push(text.trim()));
+          .then((text) => {
+            productList.descriptions.push(text.trim());
+          });
 
         cy.wrap(item)
           .find(_selectors.price)
@@ -123,6 +134,8 @@ export default {
   isDatumNotEqual,
   isElementChildExist,
   isNumberEqual,
-  isSortedNumbersEqual,
-  isSortedStringsEqual,
+  isNumbersEqual,
+  isNumbersSorted,
+  isStringsEqual,
+  isStringsSorted,
 };

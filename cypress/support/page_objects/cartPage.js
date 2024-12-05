@@ -11,10 +11,12 @@ class CartPage {
     };
   }
 
-  checkProductList() {
-    TestFactories.getProductsAttribute(this._selectors).wrap(
+  checkProductList(itemsName, itemsPrice) {
+    TestFactories.getProductsAttribute(this._selectors).then(
       ({ productList }) => {
         TestFactories.isDatumNotEqual(productList.names);
+        TestFactories.isStringsEqual(itemsName, productList.names);
+        TestFactories.isNumbersEqual(itemsPrice, productList.prices);
       }
     );
   }

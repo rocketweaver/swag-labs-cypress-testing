@@ -11,7 +11,7 @@ export class HomePage {
       price: ".inventory_item_price",
       addToCartButton: ".btn_inventory",
       cartBadge: ".shopping_cart_badge",
-      selectFilter: ".product_sort_container"
+      selectFilter: ".product_sort_container",
     };
   }
 
@@ -42,28 +42,28 @@ export class HomePage {
         case "Name (A to Z)":
           TestFactories.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.isSortedStringsEqual(productList.names);
+              TestFactories.isStringsSorted(productList.names);
             }
           );
           break;
         case "Name (Z to A)":
           TestFactories.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.isSortedStringsEqual(productList.names, "desc");
+              TestFactories.isStringsSorted(productList.names, "desc");
             }
           );
           break;
         case "Price (low to high)":
           TestFactories.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.isSortedNumbersEqual(productList.prices);
+              TestFactories.isNumbersSorted(productList.prices);
             }
           );
           break;
         case "Price (high to low)":
           TestFactories.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.isSortedNumbersEqual(productList.prices, "desc");
+              TestFactories.isNumbersSorted(productList.prices, "desc");
             }
           );
           break;
@@ -74,19 +74,24 @@ export class HomePage {
   addToCart(totalItems = 1) {
     const _dataTest = [];
     const _itemsName = [];
+    const _itemsPrice = [];
     const _totalItems = totalItems;
 
     return TestFactories.getProductsAttribute(this._selectors).then(
       ({ dataTest, productList }) => {
         for (let i = 0; i < _totalItems; i++) {
-          cy.get(this._selectors.cardContainer).eq(i).find(this._selectors.addToCartButton).click();
+          cy.get(this._selectors.cardContainer)
+            .eq(i)
+            .find(this._selectors.addToCartButton)
+            .click();
           _dataTest.push(dataTest[i]);
           _itemsName.push(productList.names[i]);
+          _itemsPrice.push(productList.prices[i]);
         }
 
         TestFactories.isNumberEqual(this._selectors.cartBadge, _totalItems);
 
-        return cy.wrap({ _dataTest, _itemsName, _totalItems });
+        return cy.wrap({ _dataTest, _itemsName, _itemsPrice, _totalItems });
       }
     );
   }

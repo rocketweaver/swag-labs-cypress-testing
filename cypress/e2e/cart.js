@@ -14,17 +14,14 @@ describe("Valid Cart", () => {
     cy.visit("/");
   });
 
-  it("Validate user can add item to cart", () => {
+  it.only("Validate user can add item to cart", () => {
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
 
-      onHomePage.addToCart(3).then(({_itemsName}) => {
-        cy.log(_itemsName);
+      onHomePage.addToCart(3).then(({ _itemsName, _itemsPrice }) => {
+        cy.get(".shopping_cart_link").click();
+        onCartPage.checkProductList(_itemsName, _itemsPrice);
       });
-
-      cy.get(".shopping_cart_link").click();
-
-      onCartPage.checkProductList();
 
       cy.then(Cypress.session.clearCurrentSessionData);
     });
