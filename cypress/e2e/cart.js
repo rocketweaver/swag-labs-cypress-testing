@@ -41,9 +41,42 @@ describe("Valid Cart", () => {
     });
   });
 
-  it.only("Validate user can remove item from cart in cart page", () => {
+  it("Validate user can remove item from cart in cart page", () => {
+    cy.wrap(username).each((username) => {
+      cy.loginToApp(username, "secret_sauce");
+
+      onHomePage.addToCart(3).then(({ _dataTest, _totalItems }) => {
+        cy.get(".shopping_cart_link").click();
+
+        onCartPage.checkProductList();
+        onCartPage.nullifyCart(_totalItems, _dataTest);
+      });
+
+      cy.then(Cypress.session.clearCurrentSessionData);
+    });
+  });
+
+  it.only("Validate user can reset app state after adding item to cart", () => {
+    cy.wrap(username).each((username) => {
+      cy.loginToApp(username, "secret_sauce");
+
+      onHomePage.addToCart(3).then(() => {
+        cy.get(".shopping_cart_link").click();
+
+        onCartPage.checkProductList();
+
+        cy.get("#react-burger-menu-btn").click();
+        cy.contains("Reset App State").click();
+
+        onCartPage.checkProductList();
+      });
+
+      cy.then(Cypress.session.clearCurrentSessionData);
+    });
+  });
+
+  it("Validate user can remove item from cart in cart page", () => {
     const itemsName = [];
-    let sortedItems = [];
 
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
@@ -52,8 +85,6 @@ describe("Valid Cart", () => {
         _itemsName.forEach((name) => {
           itemsName.push(name);
         });
-
-        sortedItems = [...itemsName].sort();
 
         cy.get(".shopping_cart_link").click();
 
