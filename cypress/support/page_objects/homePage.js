@@ -3,12 +3,13 @@ import * as TestFactories from "./helpers/helpers";
 export class HomePage {
   constructor() {
     this._selectors = {
-      container: ".inventory_item",
+      cardContainer: ".inventory_item",
       name: ".inventory_item_name",
       img: ".inventory_item_img",
       desc: ".inventory_item_desc",
       price: ".inventory_item_price",
       addToCartButton: ".btn_inventory",
+      cartBadge: ".shopping_cart_badge",
     };
   }
 
@@ -31,7 +32,7 @@ export class HomePage {
     ];
 
     cy.wrap(optionList).each((option) => {
-      cy.get(".product_sort_container").select(option);
+      cy.get(".cardContainer").select(option);
 
       switch (option) {
         case "Name (A to Z)":
@@ -79,7 +80,7 @@ export class HomePage {
           _itemsName.push(productList.names[i]);
         }
 
-        TestFactories.compareShoppingCartBadge(_totalItems);
+        TestFactories.isNumbersEqual(this._selectors.cartBadge, _totalItems);
 
         return cy.wrap({ _dataTest, _itemsName, _totalItems });
       }
@@ -96,9 +97,9 @@ export class HomePage {
       })
       .then(() => {
         if (_totalItems <= 0) {
-          cy.get(".shopping_cart_badge").should("not.exist");
+          cy.get(this._selectors.cartBadge).should("not.exist");
         } else {
-          compareShoppingCartBadge(_totalItems);
+          TestFactories.isNumbersEqual(this._selectors.cartBadge, _totalItems);
         }
       });
   }

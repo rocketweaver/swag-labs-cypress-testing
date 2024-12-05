@@ -8,8 +8,10 @@ function isDatumNotEqual(datum) {
   });
 }
 
-function compareShoppingCartBadge(totalItems) {
-  cy.get(".shopping_cart_badge")
+function isNumbersEqual(selector, totalItems) {
+  const _selector = selector;
+
+  cy.get(_selector)
     .should("be.visible")
     .invoke("text")
     .then((badgeText) => {
@@ -19,7 +21,7 @@ function compareShoppingCartBadge(totalItems) {
 
 function isAddToCartButtonExist(selectors) {
   const _selectors = {
-    container: selectors.container,
+    container: selectors.cardContainer,
     addToCartButton: selectors.addToCartButton,
   };
 
@@ -49,7 +51,7 @@ function sortProductPrice(prices, type = "asc") {
 
 function getProductsAttribute(selectors) {
   const _selectors = {
-    container: selectors.container,
+    container: selectors.cardContainer,
     img: selectors.img || null,
     name: selectors.name,
     desc: selectors.desc,
@@ -118,7 +120,7 @@ function getProductsAttribute(selectors) {
 
 export default {
   isDatumNotEqual,
-  compareShoppingCartBadge,
+  isNumbersEqual,
   getProductsAttribute,
   isAddToCartButtonExist,
   sortProductName,

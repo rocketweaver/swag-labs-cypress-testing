@@ -3,10 +3,11 @@ import * as TestFactories from "./helpers/helpers";
 class CartPage {
   constructor() {
     this._selectors = {
-      container: ".cart_item",
+      cardContainer: ".cart_item",
       name: "[data-test='inventory-item-name']",
       desc: ".inventory_item_desc",
       price: ".inventory_item_price",
+      cartBadge: ".shopping_cart_badge",
     };
   }
 
@@ -28,9 +29,9 @@ class CartPage {
       })
       .then(() => {
         if (_totalItems <= 0) {
-          cy.get(".shopping_cart_badge").should("not.exist");
+          cy.get(this._selectors.cartBadge).should("not.exist");
         } else {
-          compareShoppingCartBadge(_totalItems);
+          TestFactories.isNumbersEqual(this._selectors.cartBadge, _totalItems);
         }
       });
   }
