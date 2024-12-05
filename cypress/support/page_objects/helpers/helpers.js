@@ -19,17 +19,17 @@ function isNumberEqual(selector, totalItems) {
     });
 }
 
-function isAddToCartButtonExist(selectors) {
+function isElementChildExist(selectors, text) {
   const _selectors = {
     container: selectors.cardContainer,
-    addToCartButton: selectors.addToCartButton,
+    element: selectors.element,
   };
 
   cy.get(_selectors.container).each((item) => {
     cy.wrap(item)
-      .find(_selectors.addToCartButton)
+      .find(_selectors.element)
       .invoke("text")
-      .should("equal", "Add to cart");
+      .should("equal", text);
   });
 }
 
@@ -121,8 +121,8 @@ function getProductsAttribute(selectors) {
 export default {
   getProductsAttribute,
   isDatumNotEqual,
+  isElementChildExist,
   isNumberEqual,
   isSortedNumbersEqual,
   isSortedStringsEqual,
-  isAddToCartButtonExist,
 };

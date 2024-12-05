@@ -3,6 +3,7 @@ import * as TestFactories from "./helpers/helpers";
 export class HomePage {
   constructor() {
     this._selectors = {
+      element: "",
       cardContainer: ".inventory_item",
       name: ".inventory_item_name",
       img: ".inventory_item_img",
@@ -17,9 +18,11 @@ export class HomePage {
   checkProductList() {
     TestFactories.getProductsAttribute(this._selectors).then(
       ({ productList }) => {
+        this._selectors.element = this._selectors.addToCartButton;
+
         TestFactories.isDatumNotEqual(productList.names);
         TestFactories.isDatumNotEqual(productList.images);
-        TestFactories.isAddToCartButtonExist(this._selectors);
+        TestFactories.isElementChildExist(this._selectors, "Add to cart");
       }
     );
   }
