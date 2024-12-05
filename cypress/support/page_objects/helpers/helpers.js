@@ -8,7 +8,7 @@ function isDatumNotEqual(datum) {
   });
 }
 
-function isNumbersEqual(selector, totalItems) {
+function isNumberEqual(selector, totalItems) {
   const _selector = selector;
 
   cy.get(_selector)
@@ -33,7 +33,7 @@ function isAddToCartButtonExist(selectors) {
   });
 }
 
-function sortProductName(names, type = "asc") {
+function isSortedStringsEqual(names, type = "asc") {
   const sortedNames =
     type.toLowerCase() === "desc"
       ? [...names].sort().reverse()
@@ -41,7 +41,7 @@ function sortProductName(names, type = "asc") {
   cy.wrap(names).should("deep.equal", sortedNames);
 }
 
-function sortProductPrice(prices, type = "asc") {
+function isSortedNumbersEqual(prices, type = "asc") {
   const sortedPrices =
     type.toLowerCase() === "desc"
       ? [...prices].sort((a, b) => b - a)
@@ -119,10 +119,10 @@ function getProductsAttribute(selectors) {
 }
 
 export default {
-  isDatumNotEqual,
-  isNumbersEqual,
   getProductsAttribute,
+  isDatumNotEqual,
+  isNumberEqual,
+  isSortedNumbersEqual,
+  isSortedStringsEqual,
   isAddToCartButtonExist,
-  sortProductName,
-  sortProductPrice,
 };

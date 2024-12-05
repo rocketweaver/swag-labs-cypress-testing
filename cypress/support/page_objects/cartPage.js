@@ -31,7 +31,7 @@ class CartPage {
         if (_totalItems <= 0) {
           cy.get(this._selectors.cartBadge).should("not.exist");
         } else {
-          TestFactories.isNumbersEqual(this._selectors.cartBadge, _totalItems);
+          TestFactories.isNumberEqual(this._selectors.cartBadge, _totalItems);
         }
       });
   }

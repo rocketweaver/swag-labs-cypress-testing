@@ -10,6 +10,7 @@ export class HomePage {
       price: ".inventory_item_price",
       addToCartButton: ".btn_inventory",
       cartBadge: ".shopping_cart_badge",
+      selectFilter: ".product_sort_container"
     };
   }
 
@@ -32,34 +33,34 @@ export class HomePage {
     ];
 
     cy.wrap(optionList).each((option) => {
-      cy.get(".cardContainer").select(option);
+      cy.get(this._selectors.selectFilter).select(option);
 
       switch (option) {
         case "Name (A to Z)":
           TestFactories.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.sortProductName(productList.names);
+              TestFactories.isSortedStringsEqual(productList.names);
             }
           );
           break;
         case "Name (Z to A)":
           TestFactories.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.sortProductName(productList.names, "desc");
+              TestFactories.isSortedStringsEqual(productList.names, "desc");
             }
           );
           break;
         case "Price (low to high)":
           TestFactories.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.sortProductPrice(productList.prices);
+              TestFactories.isSortedNumbersEqual(productList.prices);
             }
           );
           break;
         case "Price (high to low)":
           TestFactories.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.sortProductPrice(productList.prices, "desc");
+              TestFactories.isSortedNumbersEqual(productList.prices, "desc");
             }
           );
           break;
@@ -75,12 +76,12 @@ export class HomePage {
     return TestFactories.getProductsAttribute(this._selectors).then(
       ({ dataTest, productList }) => {
         for (let i = 0; i < _totalItems; i++) {
-          cy.get(".inventory_item").eq(i).find(".btn_inventory").click();
+          cy.get(this._selectors.cardContainer).eq(i).find(this._selectors.addToCartButton).click();
           _dataTest.push(dataTest[i]);
           _itemsName.push(productList.names[i]);
         }
 
-        TestFactories.isNumbersEqual(this._selectors.cartBadge, _totalItems);
+        TestFactories.isNumberEqual(this._selectors.cartBadge, _totalItems);
 
         return cy.wrap({ _dataTest, _itemsName, _totalItems });
       }
@@ -99,7 +100,7 @@ export class HomePage {
         if (_totalItems <= 0) {
           cy.get(this._selectors.cartBadge).should("not.exist");
         } else {
-          TestFactories.isNumbersEqual(this._selectors.cartBadge, _totalItems);
+          TestFactories.isNumberEqual(this._selectors.cartBadge, _totalItems);
         }
       });
   }
