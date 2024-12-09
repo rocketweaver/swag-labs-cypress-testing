@@ -6,6 +6,6 @@ module.exports = defineConfig({
   video: false,
   e2e: {
     baseUrl: 'https://www.saucedemo.com',
-    specPattern: ['cypress/e2e/**/*.{js,jsx,ts,tsx}'],
+    specPattern: ['cypress/e2e/**/*.test.{js,jsx,ts,tsx}'],
   },
 });
