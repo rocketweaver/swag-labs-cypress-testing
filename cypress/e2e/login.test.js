@@ -45,7 +45,7 @@ describe.only("Invalid Login", () => {
 
   it("Login with invalid username or password", () => {
     cy.loginToApp("standard_user", "asdadsad");
-    cy.get("[data-test='error']").should("contain", " Username and password do not match any user in this service");
+    cy.get("[data-test='error']").should("contain", "Username and password do not match any user in this service");
   });
 
   it("Login with locked out account", () => {

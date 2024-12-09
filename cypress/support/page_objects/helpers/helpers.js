@@ -1,3 +1,38 @@
+function containErrorRequired(skipInput) {
+  switch (skipInput) {
+    case "skipUsername":
+      cy.get("[data-test='error']").should(
+        "contain",
+        "Username is required"
+      );
+      break;
+    case "skipPassword":
+      cy.get("[data-test='error']").should(
+        "contain",
+        "Password is required"
+      );
+      break;
+    case "skipFirstName":
+      cy.get("[data-test='error']").should(
+        "contain",
+        "First Name is required"
+      );
+      break;
+    case "skipLastName":
+      cy.get("[data-test='error']").should(
+        "contain",
+        "Last Name is required"
+      );
+      break;
+    case "skipPostalCode":
+      cy.get("[data-test='error']").should(
+        "contain",
+        "Postal Code is required"
+      );
+      break;
+  }
+}
+
 function isDatumNotEqual(datum) {
   cy.wrap(null).then(() => {
     datum.forEach((data, index) => {
@@ -130,6 +165,7 @@ function getProductsAttribute(selectors) {
 }
 
 export default {
+  containErrorRequired,
   getProductsAttribute,
   isDatumNotEqual,
   isElementChildExist,

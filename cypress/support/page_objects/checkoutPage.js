@@ -48,16 +48,30 @@ class CheckoutPage {
     });
   }
 
-  submitForm(user) {
+  submitForm(user, skipInput = "") {
     const _user = {
       firstName: user.firstName,
       lastName: user.lastName,
       postalCode: user.postalCode,
     };
 
-    cy.get("[name='firstName']").focus().type(_user.firstName);
-    cy.get("[name='lastName']").focus().type(_user.lastName);
-    cy.get("[name='postalCode']").focus().type(_user.postalCode);
+    if (skipInput !== "skipFirstName") {
+      cy.get("[name='firstName']").focus().type(_user.firstName);
+    }
+
+    if (skipInput !== "skipLastName") {
+      cy.get("[name='lastName']").focus().type(_user.lastName);
+    }
+
+    if (skipInput !== "skipPostalCode") {
+      cy.get("[name='postalCode']").focus().type(_user.postalCode);
+    }
+
+    cy.contains("Continue").click();
+
+    if(skipInput) {
+      TestFactories.containErrorRequired(skipInput);
+    }
   }
 }
 

@@ -23,18 +23,27 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import * as TestFactories from "./page_objects/helpers/helpers";
 
 Cypress.Commands.add("loginToApp", (username, password) => {
   cy.visit("https://www.saucedemo.com");
-  
-  if(username) {
+
+  if (username) {
     cy.get("[placeholder='Username']").type(username);
   }
 
-  if(password) {
+  if (password) {
     cy.get("[placeholder='Password']").type(password);
   }
 
   cy.get("[name='login-button']").should("contain", "Login").click();
   cy.wait(500);
+
+  if (!username) {
+    TestFactories.containErrorRequired("skipUsername");
+  }
+
+  if (!password) {
+    TestFactories.containErrorRequired("skipPassword");
+  }
 });
