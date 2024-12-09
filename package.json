@@ -4,11 +4,26 @@
   "description": "Swag Labs E2E Testing with Cypress",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "delete:reports": "rimraf cypress/results && mkdirp cypress/results",
+    "prereport": "npm run delete:reports",
+    "mochawesome:merge": "npx mochawesome-merge \"cypress/results/mochawesome/*.json\" > mochawesome.json && npx marge mochawesome.json",
+    "junit:merge": "npx run junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
+    "report": "cypress run --reporter cypress-multi-reporters --reporter-options configFile=reporter-config.json",
+    "cypress:run": "npm run prereport && npx cypress run",
+    "cypress:e2e": "npm run cypress:run; npm run junit:merge; npm run mochawesome:merge;"
   },
   "author": "Arbhy a.k.a. RocketWeaver",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.15.2"
+    "cypress": "^13.15.2",
+    "cypress-multi-reporters": "^2.0.4",
+    "junit-merge": "^2.0.0",
+    "mkdirp": "^3.0.1",
+    "mocha-junit-reporter": "^2.2.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "rimraf": "^6.0.1"
   }
 }

@@ -9,4 +9,8 @@ module.exports = defineConfig({
     baseUrl: 'https://www.saucedemo.com',
     specPattern: ['cypress/e2e/**/*.test.{js,jsx,ts,tsx}'],
   },
+  reporter: 'cypress-multi-reporters',
+  reporterOptions: {
+    configFile: 'reporter-config.json',
+  },
 });
