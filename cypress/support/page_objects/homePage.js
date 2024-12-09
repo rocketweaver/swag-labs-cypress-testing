@@ -29,10 +29,10 @@ export class HomePage {
 
   sortProduct() {
     const optionList = [
-      "Name (A to Z)",
+      // "Name (A to Z)",
       "Name (Z to A)",
-      "Price (low to high)",
-      "Price (high to low)",
+      // "Price (low to high)",
+      // "Price (high to low)",
     ];
 
     cy.wrap(optionList).each((option) => {

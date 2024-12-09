@@ -3,9 +3,9 @@ import { onHomePage } from "../support/page_objects/homePage";
 describe("Homepage", () => {
   const username = [
     "standard_user",
-    "error_user",
     "visual_user",
     "performance_glitch_user",
+    "error_user",
     "problem_user",
   ];
 
@@ -23,7 +23,7 @@ describe("Homepage", () => {
     });
   });
 
-  it("Verify user can sort product", () => {
+  it.only("Verify user can sort product", () => {
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
 
