@@ -28,7 +28,7 @@ describe("Valid Login", () => {
   });
 });
 
-describe.only("Invalid Login", () => {
+describe("Invalid Login", () => {
   before(() => {
     cy.visit("/");
   })

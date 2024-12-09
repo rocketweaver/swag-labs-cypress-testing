@@ -5,10 +5,10 @@ import { onCheckoutPage } from "../support/page_objects/checkoutPage";
 describe("Valid Checkout", () => {
   const username = [
     "standard_user",
-    // "visual_user",
-    // "performance_glitch_user",
-    // "error_user",
-    // "problem_user",
+    "visual_user",
+    "performance_glitch_user",
+    "error_user",
+    "problem_user",
   ];
 
   before(() => {
@@ -100,13 +100,13 @@ describe("Valid Checkout", () => {
   });
 });
 
-describe.only("Invalid Checkout", () => {
+describe("Invalid Checkout", () => {
   const username = [
     "standard_user",
-    // "visual_user",
-    // "performance_glitch_user",
-    // "error_user",
-    // "problem_user",
+    "visual_user",
+    "performance_glitch_user",
+    "error_user",
+    "problem_user",
   ];
 
   before(() => {

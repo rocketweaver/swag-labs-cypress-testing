@@ -4,17 +4,17 @@ import { onHomePage } from "../support/page_objects/homePage";
 describe("Valid Cart", () => {
   const username = [
     "standard_user",
-    // "error_user",
-    // "visual_user",
-    // "performance_glitch_user",
-    // "problem_user",
+    "error_user",
+    "visual_user",
+    "performance_glitch_user",
+    "problem_user",
   ];
 
   before(() => {
     cy.visit("/");
   });
 
-  it.only("Validate user can add item to cart", () => {
+  it("Validate user can add item to cart", () => {
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
 
