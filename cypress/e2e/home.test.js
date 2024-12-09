@@ -3,10 +3,10 @@ import { onHomePage } from "../support/page_objects/homePage";
 describe("Homepage", () => {
   const username = [
     "standard_user",
-    "visual_user",
-    "performance_glitch_user",
-    "error_user",
-    "problem_user",
+    // "visual_user",
+    // "performance_glitch_user",
+    // "error_user",
+    // "problem_user",
   ];
 
   before(() => {

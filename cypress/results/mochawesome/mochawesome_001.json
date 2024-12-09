@@ -1,0 +1,199 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 1,
+    "pending": 0,
+    "failures": 4,
+    "start": "2024-12-09T05:25:35.033Z",
+    "end": "2024-12-09T05:29:42.448Z",
+    "duration": 247415,
+    "testsRegistered": 5,
+    "passPercent": 20,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3d4f6112-c880-479f-a546-d0323c12b3d3",
+      "title": "",
+      "fullFile": "cypress\\e2e\\cart.test.js",
+      "file": "cypress\\e2e\\cart.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4515a83b-34fb-4861-9cf0-fedacc98f4e3",
+          "title": "Valid Cart",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validate user can add item to cart",
+              "fullTitle": "Valid Cart Validate user can add item to cart",
+              "timedOut": null,
+              "duration": 6129,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _itemsName,\n    _itemsPrice\n  }) => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList(_itemsName, _itemsPrice);\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {},
+              "uuid": "84722160-4272-4596-9d6d-898cd7bd44b2",
+              "parentUUID": "4515a83b-34fb-4861-9cf0-fedacc98f4e3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate user can remove item from cart in home page",
+              "fullTitle": "Valid Cart Validate user can remove item from cart in home page",
+              "timedOut": null,
+              "duration": 60265,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _dataTest,\n    _totalItems\n  }) => {\n    _homePage.onHomePage.nullifyCart(_totalItems, _dataTest);\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {
+                "message": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.",
+                "estack": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://swag-labs-testing/./cypress/support/commands.js:29:5)",
+                "diff": null
+              },
+              "uuid": "b0a6065e-7c4f-42b9-8ae7-e59a105d8d2c",
+              "parentUUID": "4515a83b-34fb-4861-9cf0-fedacc98f4e3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate user can remove item from cart in cart page",
+              "fullTitle": "Valid Cart Validate user can remove item from cart in cart page",
+              "timedOut": null,
+              "duration": 60203,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _dataTest,\n    _totalItems\n  }) => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList();\n    _cartPage.onCartPage.nullifyCart(_totalItems, _dataTest);\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {
+                "message": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.",
+                "estack": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://swag-labs-testing/./cypress/support/commands.js:29:5)",
+                "diff": null
+              },
+              "uuid": "8d86ae07-d30f-4030-9be2-8512a87151f4",
+              "parentUUID": "4515a83b-34fb-4861-9cf0-fedacc98f4e3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate user can reset app state after adding item to cart",
+              "fullTitle": "Valid Cart Validate user can reset app state after adding item to cart",
+              "timedOut": null,
+              "duration": 60230,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(() => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList();\n    cy.wait(300);\n    cy.get(\"#react-burger-menu-btn\").click();\n    cy.contains(\"Reset App State\").click();\n    _cartPage.onCartPage.checkProductList();\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {
+                "message": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.",
+                "estack": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://swag-labs-testing/./cypress/support/commands.js:29:5)",
+                "diff": null
+              },
+              "uuid": "2cb9a75a-3508-48fe-9ec7-30157be2b144",
+              "parentUUID": "4515a83b-34fb-4861-9cf0-fedacc98f4e3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate user can remove item from cart in cart page",
+              "fullTitle": "Valid Cart Validate user can remove item from cart in cart page",
+              "timedOut": null,
+              "duration": 60240,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _dataTest,\n    _totalItems\n  }) => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList();\n    _cartPage.onCartPage.nullifyCart(_totalItems, _dataTest);\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {
+                "message": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.",
+                "estack": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://swag-labs-testing/./cypress/support/commands.js:29:5)",
+                "diff": null
+              },
+              "uuid": "5d9c2a9c-02d8-4850-bdeb-391ef7c52d28",
+              "parentUUID": "4515a83b-34fb-4861-9cf0-fedacc98f4e3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "84722160-4272-4596-9d6d-898cd7bd44b2"
+          ],
+          "failures": [
+            "b0a6065e-7c4f-42b9-8ae7-e59a105d8d2c",
+            "8d86ae07-d30f-4030-9be2-8512a87151f4",
+            "2cb9a75a-3508-48fe-9ec7-30157be2b144",
+            "5d9c2a9c-02d8-4850-bdeb-391ef7c52d28"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 247067,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

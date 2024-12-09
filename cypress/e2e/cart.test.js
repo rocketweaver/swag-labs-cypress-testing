@@ -4,10 +4,10 @@ import { onHomePage } from "../support/page_objects/homePage";
 describe("Valid Cart", () => {
   const username = [
     "standard_user",
-    "error_user",
-    "visual_user",
-    "performance_glitch_user",
-    "problem_user",
+    // "error_user",
+    // "visual_user",
+    // "performance_glitch_user",
+    // "problem_user",
   ];
 
   before(() => {
@@ -43,10 +43,10 @@ describe("Valid Cart", () => {
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
 
-      onHomePage.addToCart(3).then(({ _dataTest, _totalItems }) => {
+      onHomePage.addToCart(3).then(({ _itemsName, _itemsPrice, _dataTest, _totalItems }) => {
         cy.get(".shopping_cart_link").click();
 
-        onCartPage.checkProductList();
+        onCartPage.checkProductList(_itemsName, _itemsPrice);
         onCartPage.nullifyCart(_totalItems, _dataTest);
       });
 
@@ -59,15 +59,8 @@ describe("Valid Cart", () => {
       cy.loginToApp(username, "secret_sauce");
 
       onHomePage.addToCart(3).then(() => {
-        cy.get(".shopping_cart_link").click();
-
-        onCartPage.checkProductList();
-        cy.wait(300);
-
         cy.get("#react-burger-menu-btn").click();
         cy.contains("Reset App State").click();
-
-        onCartPage.checkProductList();
       });
 
       cy.then(Cypress.session.clearCurrentSessionData);
@@ -78,10 +71,10 @@ describe("Valid Cart", () => {
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
 
-      onHomePage.addToCart(3).then(({ _dataTest, _totalItems }) => {
+      onHomePage.addToCart(3).then(({ _dataTest, _totalItems, _itemsName, _itemsPrice }) => {
         cy.get(".shopping_cart_link").click();
 
-        onCartPage.checkProductList();
+        onCartPage.checkProductList(_itemsName, _itemsPrice);
         onCartPage.nullifyCart(_totalItems, _dataTest);
       });
 

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="188.638" tests="7" failures="3">
+  <testsuite name="Root Suite" timestamp="2024-12-09T05:29:45" tests="0" file="cypress\e2e\checkout.test.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Valid Checkout" timestamp="2024-12-09T05:29:45" tests="3" time="128.323" failures="2">
+    <testcase name="Valid Checkout Validate checkout after adding item to cart" time="7.703" classname="Validate checkout after adding item to cart">
+    </testcase>
+    <testcase name="Valid Checkout Provide a valid first name &amp; last name in arabic format" time="0.000" classname="Provide a valid first name &amp; last name in arabic format">
+      <failure message="Timed out after waiting `60000ms` for your remote page to load.
+
+Your page did not fire its `load` event within `60000ms`.
+
+You can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.
+
+Browsers will not fire the `load` event until all stylesheets and scripts are done downloading.
+
+When this `load` event occurs, Cypress will continue running commands." type="CypressError"><![CDATA[CypressError: Timed out after waiting `60000ms` for your remote page to load.
+
+Your page did not fire its `load` event within `60000ms`.
+
+You can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.
+
+Browsers will not fire the `load` event until all stylesheets and scripts are done downloading.
+
+When this `load` event occurs, Cypress will continue running commands.
+    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)
+    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)
+    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)
+    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)
+    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)
+    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)
+    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)
+    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)
+    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)
+    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)
+    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)
+    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)
+    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)
+From Your Spec Code:
+    at Context.eval (webpack://swag-labs-testing/./cypress/support/commands.js:29:5)]]></failure>
+    </testcase>
+    <testcase name="Valid Checkout Provide a valid zip/postal code with arabic format, first name, and last name" time="0.000" classname="Provide a valid zip/postal code with arabic format, first name, and last name">
+      <failure message="Timed out after waiting `60000ms` for your remote page to load.
+
+Your page did not fire its `load` event within `60000ms`.
+
+You can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.
+
+Browsers will not fire the `load` event until all stylesheets and scripts are done downloading.
+
+When this `load` event occurs, Cypress will continue running commands." type="CypressError"><![CDATA[CypressError: Timed out after waiting `60000ms` for your remote page to load.
+
+Your page did not fire its `load` event within `60000ms`.
+
+You can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.
+
+Browsers will not fire the `load` event until all stylesheets and scripts are done downloading.
+
+When this `load` event occurs, Cypress will continue running commands.
+    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)
+    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)
+    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)
+    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)
+    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)
+    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)
+    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)
+    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)
+    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)
+    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)
+    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)
+    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)
+    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)
+From Your Spec Code:
+    at Context.eval (webpack://swag-labs-testing/./cypress/support/commands.js:29:5)]]></failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Invalid Checkout" timestamp="2024-12-09T05:31:54" tests="4" time="60.308" failures="1">
+    <testcase name="Invalid Checkout &quot;before all&quot; hook for &quot;Validate user can&apos;t checkout if they have 0 item on cart&quot;" time="0.000" classname="&quot;before all&quot; hook for &quot;Validate user can&apos;t checkout if they have 0 item on cart&quot;">
+      <failure message="Timed out after waiting `60000ms` for your remote page to load.
+
+Your page did not fire its `load` event within `60000ms`.
+
+You can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.
+
+Browsers will not fire the `load` event until all stylesheets and scripts are done downloading.
+
+When this `load` event occurs, Cypress will continue running commands.
+
+Because this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Invalid Checkout`" type="CypressError"><![CDATA[CypressError: Timed out after waiting `60000ms` for your remote page to load.
+
+Your page did not fire its `load` event within `60000ms`.
+
+You can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.
+
+Browsers will not fire the `load` event until all stylesheets and scripts are done downloading.
+
+When this `load` event occurs, Cypress will continue running commands.
+
+Because this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Invalid Checkout`
+    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)
+    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)
+    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)
+    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)
+    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)
+    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)
+    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)
+    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)
+    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)
+    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)
+    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)
+    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)
+    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)
+From Your Spec Code:
+    at Context.eval (webpack://swag-labs-testing/./cypress/e2e/checkout.test.js:113:7)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

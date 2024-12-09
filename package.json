@@ -8,10 +8,10 @@
     "delete:reports": "rimraf cypress/results && mkdirp cypress/results",
     "prereport": "npm run delete:reports",
     "mochawesome:merge": "npx mochawesome-merge \"cypress/results/mochawesome/*.json\" > mochawesome.json && npx marge mochawesome.json",
-    "junit:merge": "npx run junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
+    "junit:merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
     "report": "cypress run --reporter cypress-multi-reporters --reporter-options configFile=reporter-config.json",
     "cypress:run": "npm run prereport && npx cypress run",
-    "cypress:e2e": "npm run cypress:run; npm run junit:merge; npm run mochawesome:merge;"
+    "cypress:e2e": "npm run cypress:run ; npm run junit:merge ; npm run mochawesome:merge"
   },
   "author": "Arbhy a.k.a. RocketWeaver",
   "license": "ISC",

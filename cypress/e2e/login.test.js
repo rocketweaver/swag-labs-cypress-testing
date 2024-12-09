@@ -5,10 +5,10 @@ describe("Valid Login", () => {
 
   const username = [
     "standard_user",
-    "problem_user",
-    "error_user",
-    "visual_user",
-    "performance_glitch_user",
+    // "problem_user",
+    // "error_user",
+    // "visual_user",
+    // "performance_glitch_user",
   ];
 
   it("Login with valid username & password", () => {

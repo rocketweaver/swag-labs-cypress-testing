@@ -1,0 +1,254 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 4,
+    "passes": 1,
+    "pending": 0,
+    "failures": 3,
+    "start": "2024-12-09T05:29:45.973Z",
+    "end": "2024-12-09T05:32:54.611Z",
+    "duration": 188638,
+    "testsRegistered": 7,
+    "passPercent": 14.285714285714285,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 3,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "2c0513bb-afe3-44dc-bd5c-b4809c208551",
+      "title": "",
+      "fullFile": "cypress\\e2e\\checkout.test.js",
+      "file": "cypress\\e2e\\checkout.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1484ec71-f4b2-4e58-957e-103a9c46b421",
+          "title": "Valid Checkout",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validate checkout after adding item to cart",
+              "fullTitle": "Valid Checkout Validate checkout after adding item to cart",
+              "timedOut": null,
+              "duration": 7703,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const user = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  postalCode: \"1234\"\n};\ncy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _itemsName,\n    _itemsPrice\n  }) => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList(_itemsName, _itemsPrice);\n    cy.contains(\"Checkout\").click();\n    _checkoutPage.onCheckoutPage.submitForm(user);\n    _checkoutPage.onCheckoutPage.checkProductOverview(_itemsName, _itemsPrice);\n    cy.contains(\"Finish\").click();\n    cy.contains(\"Thank you for your order!\");\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {},
+              "uuid": "05fd0aec-1325-40f0-bd51-017a7450e8a4",
+              "parentUUID": "1484ec71-f4b2-4e58-957e-103a9c46b421",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Provide a valid first name & last name in arabic format",
+              "fullTitle": "Valid Checkout Provide a valid first name & last name in arabic format",
+              "timedOut": null,
+              "duration": 60225,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const user = {\n  firstName: \"جون\",\n  lastName: \"كارتر\",\n  postalCode: \"1234\"\n};\ncy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _itemsName,\n    _itemsPrice\n  }) => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList(_itemsName, _itemsPrice);\n    cy.contains(\"Checkout\").click();\n    _checkoutPage.onCheckoutPage.submitForm(user);\n    _checkoutPage.onCheckoutPage.checkProductOverview(_itemsName, _itemsPrice);\n    cy.contains(\"Finish\").click();\n    cy.contains(\"Thank you for your order!\");\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {
+                "message": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.",
+                "estack": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://swag-labs-testing/./cypress/support/commands.js:29:5)",
+                "diff": null
+              },
+              "uuid": "cf56c7eb-9084-4d14-a96f-4053a234d5fa",
+              "parentUUID": "1484ec71-f4b2-4e58-957e-103a9c46b421",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Provide a valid zip/postal code with arabic format, first name, and last name",
+              "fullTitle": "Valid Checkout Provide a valid zip/postal code with arabic format, first name, and last name",
+              "timedOut": null,
+              "duration": 60209,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const user = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  postalCode: \"١٧٤١٢\"\n};\ncy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _itemsName,\n    _itemsPrice\n  }) => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList(_itemsName, _itemsPrice);\n    cy.contains(\"Checkout\").click();\n    _checkoutPage.onCheckoutPage.submitForm(user);\n    _checkoutPage.onCheckoutPage.checkProductOverview(_itemsName, _itemsPrice);\n    cy.contains(\"Finish\").click();\n    cy.contains(\"Thank you for your order!\");\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {
+                "message": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.",
+                "estack": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://swag-labs-testing/./cypress/support/commands.js:29:5)",
+                "diff": null
+              },
+              "uuid": "35462676-7c68-46d6-8089-65c5e84770c9",
+              "parentUUID": "1484ec71-f4b2-4e58-957e-103a9c46b421",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "05fd0aec-1325-40f0-bd51-017a7450e8a4"
+          ],
+          "failures": [
+            "cf56c7eb-9084-4d14-a96f-4053a234d5fa",
+            "35462676-7c68-46d6-8089-65c5e84770c9"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 128137,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "5b3649a6-fd91-4fe9-84a9-a64d70f83670",
+          "title": "Invalid Checkout",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validate user can't checkout if they have 0 item on cart",
+              "fullTitle": "Invalid Checkout Validate user can't checkout if they have 0 item on cart",
+              "timedOut": null,
+              "duration": 60236,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const user = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  postalCode: \"1234\"\n};\ncy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  cy.get(\".shopping_cart_link\").click();\n  cy.contains(\"Checkout\").click();\n  cy.url().should(\"eq\", \"https://www.saucedemo.com/cart.html\");\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {
+                "message": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Invalid Checkout`",
+                "estack": "CypressError: Timed out after waiting `60000ms` for your remote page to load.\n\nYour page did not fire its `load` event within `60000ms`.\n\nYou can try increasing the `pageLoadTimeout` value in `cypress.config.js` to wait longer.\n\nBrowsers will not fire the `load` event until all stylesheets and scripts are done downloading.\n\nWhen this `load` event occurs, Cypress will continue running commands.\n\nBecause this error occurred during a `before all` hook we are skipping the remaining tests in the current suite: `Invalid Checkout`\n    at timedOutWaitingForPageLoad (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:130482:64)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:131467:16)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at <unknown> (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:4186:41)\n    at tryCatcher (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1807:23)\n    at Promise._settlePromiseFromHandler (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1519:31)\n    at Promise._settlePromise (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1576:18)\n    at Promise._settlePromise0 (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1621:10)\n    at Promise._settlePromises (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:1697:18)\n    at _drainQueueStep (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2407:12)\n    at _drainQueue (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2400:9)\n    at Async._drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2416:5)\n    at Async.drainQueues (https://www.saucedemo.com/__cypress/runner/cypress_runner.js:2286:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://swag-labs-testing/./cypress/e2e/checkout.test.js:113:7)",
+                "diff": null
+              },
+              "uuid": "bf31950f-5c4a-4d7b-8021-9f15c79ec149",
+              "parentUUID": "5b3649a6-fd91-4fe9-84a9-a64d70f83670",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Provide empty first name in checkout form",
+              "fullTitle": "Invalid Checkout Provide empty first name in checkout form",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const user = {\n  firstName: \"\",\n  lastName: \"كارتر\",\n  postalCode: \"1234\"\n};\ncy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _itemsName,\n    _itemsPrice\n  }) => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList(_itemsName, _itemsPrice);\n    cy.contains(\"Checkout\").click();\n    _checkoutPage.onCheckoutPage.submitForm(user, \"skipFirstName\");\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {},
+              "uuid": "83a69da2-c76a-44ce-aadb-02a7b2497ffd",
+              "parentUUID": "5b3649a6-fd91-4fe9-84a9-a64d70f83670",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Provide empty last name in checkout form",
+              "fullTitle": "Invalid Checkout Provide empty last name in checkout form",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const user = {\n  firstName: \"John\",\n  lastName: \"\",\n  postalCode: \"1234\"\n};\ncy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _itemsName,\n    _itemsPrice\n  }) => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList(_itemsName, _itemsPrice);\n    cy.contains(\"Checkout\").click();\n    _checkoutPage.onCheckoutPage.submitForm(user, \"skipLastName\");\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {},
+              "uuid": "4f219964-7986-4cfe-99f3-1f95b7549ba6",
+              "parentUUID": "5b3649a6-fd91-4fe9-84a9-a64d70f83670",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Provide empty zip/postal code in checkout form",
+              "fullTitle": "Invalid Checkout Provide empty zip/postal code in checkout form",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const user = {\n  firstName: \"John\",\n  lastName: \"Doe\",\n  postalCode: \"\"\n};\ncy.wrap(username).each(username => {\n  cy.loginToApp(username, \"secret_sauce\");\n  _homePage.onHomePage.addToCart(3).then(({\n    _itemsName,\n    _itemsPrice\n  }) => {\n    cy.get(\".shopping_cart_link\").click();\n    _cartPage.onCartPage.checkProductList(_itemsName, _itemsPrice);\n    cy.contains(\"Checkout\").click();\n    _checkoutPage.onCheckoutPage.submitForm(user, \"skipPostalCode\");\n  });\n  cy.then(Cypress.session.clearCurrentSessionData);\n});",
+              "err": {},
+              "uuid": "cc702d76-d972-459a-9460-dd6cfbdbfb41",
+              "parentUUID": "5b3649a6-fd91-4fe9-84a9-a64d70f83670",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "bf31950f-5c4a-4d7b-8021-9f15c79ec149"
+          ],
+          "pending": [],
+          "skipped": [
+            "83a69da2-c76a-44ce-aadb-02a7b2497ffd",
+            "4f219964-7986-4cfe-99f3-1f95b7549ba6",
+            "cc702d76-d972-459a-9460-dd6cfbdbfb41"
+          ],
+          "duration": 60236,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

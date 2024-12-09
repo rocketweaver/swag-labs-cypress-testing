@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.281" tests="3" failures="0">
+  <testsuite name="Root Suite" timestamp="2024-12-09T05:25:26" tests="0" file="cypress\e2e\bypassing_to_main_pages.test.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Bypass to Main Pages Without Login" timestamp="2024-12-09T05:25:26" tests="3" time="4.275" failures="0">
+    <testcase name="Bypass to Main Pages Without Login Bypass Homepage" time="3.104" classname="Bypass Homepage">
+    </testcase>
+    <testcase name="Bypass to Main Pages Without Login Bypass Product Detail" time="0.622" classname="Bypass Product Detail">
+    </testcase>
+    <testcase name="Bypass to Main Pages Without Login Bypass Cart" time="0.481" classname="Bypass Cart">
+    </testcase>
+  </testsuite>
+</testsuites>
