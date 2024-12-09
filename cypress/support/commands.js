@@ -23,7 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-import * as TestFactories from "./page_objects/helpers/helpers";
+import * as ErrorMessage from "./page_objects/helpers/errorHelper";
 
 Cypress.Commands.add("loginToApp", (username, password) => {
   cy.visit("https://www.saucedemo.com");
@@ -40,10 +40,10 @@ Cypress.Commands.add("loginToApp", (username, password) => {
   cy.wait(500);
 
   if (!username) {
-    TestFactories.containErrorRequired("skipUsername");
+    ErrorMessage.containErrorRequired("skipUsername");
   }
 
   if (!password) {
-    TestFactories.containErrorRequired("skipPassword");
+    ErrorMessage.containErrorRequired("skipPassword");
   }
 });

@@ -1,4 +1,6 @@
-import * as TestFactories from "./helpers/helpers";
+import * as TestFactories from "./helpers/elementHelper";
+import * as ExtractAttribute from "./helpers/extractAttributesHelper";
+import * as Compare from "./helpers/comparisonHelper";
 
 class CartPage {
   constructor() {
@@ -12,11 +14,11 @@ class CartPage {
   }
 
   checkProductList(itemsName, itemsPrice) {
-    TestFactories.getProductsAttribute(this._selectors).then(
+    ExtractAttribute.getProductsAttribute(this._selectors).then(
       ({ productList }) => {
-        TestFactories.isDatumNotEqual(productList.names);
-        TestFactories.isStringsEqual(itemsName, productList.names);
-        TestFactories.isNumbersEqual(itemsPrice, productList.prices);
+        Compare.isDatumNotEqual(productList.names);
+        Compare.isStringsEqual(itemsName, productList.names);
+        Compare.isNumbersEqual(itemsPrice, productList.prices);
       }
     );
   }
@@ -33,7 +35,7 @@ class CartPage {
         if (_totalItems <= 0) {
           cy.get(this._selectors.cartBadge).should("not.exist");
         } else {
-          TestFactories.isNumberEqual(this._selectors.cartBadge, _totalItems);
+          Compare.isNumberEqual(this._selectors.cartBadge, _totalItems);
         }
       });
   }

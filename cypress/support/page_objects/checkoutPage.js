@@ -1,4 +1,6 @@
-import * as TestFactories from "./helpers/helpers";
+import * as ExtracAttributes from "./helpers/extractAttributesHelper";
+import * as Compare from "./helpers/comparisonHelper";
+import * as ErrorMessage from "./helpers/errorHelper";
 
 class CheckoutPage {
   constructor() {
@@ -12,11 +14,11 @@ class CheckoutPage {
   }
 
   checkProductList(itemsName, itemsPrice) {
-    TestFactories.getProductsAttribute(this._selectors).then(
+    ExtracAttributes.getProductsAttribute(this._selectors).then(
       ({ productList }) => {
-        TestFactories.isDatumNotEqual(productList.names);
-        TestFactories.isStringsEqual(itemsName, productList.names);
-        TestFactories.isNumbersEqual(itemsPrice, productList.prices);
+        Compare.isDatumNotEqual(productList.names);
+        Compare.isStringsEqual(itemsName, productList.names);
+        Compare.isNumbersEqual(itemsPrice, productList.prices);
       }
     );
   }
@@ -69,8 +71,8 @@ class CheckoutPage {
 
     cy.contains("Continue").click();
 
-    if(skipInput) {
-      TestFactories.containErrorRequired(skipInput);
+    if (skipInput) {
+      ErrorMessage.containErrorRequired(skipInput);
     }
   }
 }

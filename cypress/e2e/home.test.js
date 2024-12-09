@@ -23,7 +23,7 @@ describe("Homepage", () => {
     });
   });
 
-  it.only("Verify user can sort product", () => {
+  it("Verify user can sort product", () => {
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
 

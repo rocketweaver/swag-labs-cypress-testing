@@ -1,4 +1,7 @@
-import * as TestFactories from "./helpers/helpers";
+import * as Element from "./helpers/elementHelper";
+import * as ExtractAttribute from "./helpers/extractAttributesHelper";
+import * as Sort from "./helpers/sortingHelper";
+import * as Compare from "./helpers/comparisonHelper";
 
 export class HomePage {
   constructor() {
@@ -16,23 +19,23 @@ export class HomePage {
   }
 
   checkProductList() {
-    TestFactories.getProductsAttribute(this._selectors).then(
+    ExtractAttribute.getProductsAttribute(this._selectors).then(
       ({ productList }) => {
         this._selectors.element = this._selectors.addToCartButton;
 
-        TestFactories.isDatumNotEqual(productList.names);
-        TestFactories.isDatumNotEqual(productList.images);
-        TestFactories.isElementChildExist(this._selectors, "Add to cart");
+        Compare.isDatumNotEqual(productList.names);
+        Compare.isDatumNotEqual(productList.images);
+        Element.isElementChildExist(this._selectors, "Add to cart");
       }
     );
   }
 
   sortProduct() {
     const optionList = [
-      // "Name (A to Z)",
+      "Name (A to Z)",
       "Name (Z to A)",
-      // "Price (low to high)",
-      // "Price (high to low)",
+      "Price (low to high)",
+      "Price (high to low)",
     ];
 
     cy.wrap(optionList).each((option) => {
@@ -40,30 +43,30 @@ export class HomePage {
 
       switch (option) {
         case "Name (A to Z)":
-          TestFactories.getProductsAttribute(this._selectors).then(
+          ExtractAttribute.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.isStringsSorted(productList.names);
+              Sort.isStringsSorted(productList.names);
             }
           );
           break;
         case "Name (Z to A)":
-          TestFactories.getProductsAttribute(this._selectors).then(
+          ExtractAttribute.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.isStringsSorted(productList.names, "desc");
+              Sort.isStringsSorted(productList.names, "desc");
             }
           );
           break;
         case "Price (low to high)":
-          TestFactories.getProductsAttribute(this._selectors).then(
+          ExtractAttribute.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.isNumbersSorted(productList.prices);
+              Sort.isNumbersSorted(productList.prices);
             }
           );
           break;
         case "Price (high to low)":
-          TestFactories.getProductsAttribute(this._selectors).then(
+          ExtractAttribute.getProductsAttribute(this._selectors).then(
             ({ productList }) => {
-              TestFactories.isNumbersSorted(productList.prices, "desc");
+              Sort.isNumbersSorted(productList.prices, "desc");
             }
           );
           break;
@@ -77,7 +80,7 @@ export class HomePage {
     const _itemsPrice = [];
     const _totalItems = totalItems;
 
-    return TestFactories.getProductsAttribute(this._selectors).then(
+    return ExtractAttribute.getProductsAttribute(this._selectors).then(
       ({ dataTest, productList }) => {
         for (let i = 0; i < _totalItems; i++) {
           cy.get(this._selectors.cardContainer)
@@ -89,7 +92,7 @@ export class HomePage {
           _itemsPrice.push(productList.prices[i]);
         }
 
-        TestFactories.isNumberEqual(this._selectors.cartBadge, _totalItems);
+        Compare.isNumberEqual(this._selectors.cartBadge, _totalItems);
 
         return cy.wrap({ _dataTest, _itemsName, _itemsPrice, _totalItems });
       }
@@ -108,7 +111,7 @@ export class HomePage {
         if (_totalItems <= 0) {
           cy.get(this._selectors.cartBadge).should("not.exist");
         } else {
-          TestFactories.isNumberEqual(this._selectors.cartBadge, _totalItems);
+          Compare.isNumberEqual(this._selectors.cartBadge, _totalItems);
         }
       });
   }
