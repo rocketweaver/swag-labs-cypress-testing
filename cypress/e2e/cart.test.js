@@ -4,10 +4,10 @@ import { onHomePage } from "../support/page_objects/homePage";
 describe("Valid Cart", () => {
   const username = [
     "standard_user",
-    // "error_user",
-    // "visual_user",
-    // "performance_glitch_user",
-    // "problem_user",
+    "error_user",
+    "visual_user",
+    "performance_glitch_user",
+    "problem_user",
   ];
 
   before(() => {

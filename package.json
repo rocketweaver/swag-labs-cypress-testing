@@ -10,7 +10,7 @@
     "mochawesome:merge": "npx mochawesome-merge \"cypress/results/mochawesome/*.json\" > mochawesome.json && npx marge mochawesome.json",
     "junit:merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/result.xml",
     "report": "cypress run --reporter cypress-multi-reporters --reporter-options configFile=reporter-config.json",
-    "cypress:run": "npm run prereport && npx cypress run",
+    "cypress:run": "npm run prereport && npx cypress run --browser chrome --headless",
     "cypress:e2e": "npm-run-all --serial --continue-on-error cypress:run junit:merge mochawesome:merge"
   },
   "author": "Arbhy a.k.a. RocketWeaver",

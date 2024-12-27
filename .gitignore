@@ -4,3 +4,4 @@ node_modules/
 # Ignoring report result
 cypress/results/
 cypress/screenshots/
+mochawesome-report/
