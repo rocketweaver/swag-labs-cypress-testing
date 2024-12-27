@@ -1,0 +1,9 @@
+services:
+        swag_labs_testing:
+          image: swag-labs-compose
+          build:
+              context: .
+              dockerfile: ./Dockerfile
+          volumes:
+              - ./dockerReports/:/app/cypress/results
+              - ./dockerReports/:/app/mochawesome-report

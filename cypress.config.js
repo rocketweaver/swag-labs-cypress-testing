@@ -9,7 +9,12 @@ module.exports = defineConfig({
   chromeWebSecurity: false,
   e2e: {
     baseUrl: 'https://www.saucedemo.com',
-    specPattern: ['cypress/e2e/**/*.test.{js,jsx,ts,tsx}'],
+    specPattern: [
+      'cypress/e2e/login.test.js',
+      'cypress/e2e/bypassing_to_main_pages.test.js',
+      'cypress/e2e/cart.test.js',
+      'cypress/e2e/checkout.test.js'
+    ],
   },
   reporter: 'cypress-multi-reporters',
   reporterOptions: {

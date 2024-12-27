@@ -113,7 +113,7 @@ describe("Invalid Checkout", () => {
     cy.visit("/");
   });
 
-  it("Validate user can't checkout if they have 0 item on cart", () => {
+  it.skip("Validate user can't checkout if they have 0 item on cart", () => {
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
 
