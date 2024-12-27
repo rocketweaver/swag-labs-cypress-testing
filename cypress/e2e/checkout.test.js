@@ -5,10 +5,10 @@ import { onCheckoutPage } from "../support/page_objects/checkoutPage";
 describe("Valid Checkout", () => {
   const username = [
     "standard_user",
-    // "visual_user",
-    // "performance_glitch_user",
-    // "error_user",
-    // "problem_user",
+    "visual_user",
+    "performance_glitch_user",
+    "error_user",
+    "problem_user",
   ];
 
   before(() => {
@@ -103,10 +103,10 @@ describe("Valid Checkout", () => {
 describe("Invalid Checkout", () => {
   const username = [
     "standard_user",
-    // "visual_user",
-    // "performance_glitch_user",
-    // "error_user",
-    // "problem_user",
+    "visual_user",
+    "performance_glitch_user",
+    "error_user",
+    "problem_user",
   ];
 
   before(() => {
@@ -114,12 +114,6 @@ describe("Invalid Checkout", () => {
   });
 
   it("Validate user can't checkout if they have 0 item on cart", () => {
-    const user = {
-      firstName: "John",
-      lastName: "Doe",
-      postalCode: "1234",
-    };
-
     cy.wrap(username).each((username) => {
       cy.loginToApp(username, "secret_sauce");
 
