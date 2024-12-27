@@ -28,7 +28,7 @@ npm i --force
 
 **Run E2E and merge the reports**.
 ```sh
-npx cypress:e2e
+npm run cypress:e2e
 ```
 
 **Run on a browser (optional)**.
