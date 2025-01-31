@@ -16,7 +16,7 @@ Below is a table of sources used for this project, including test scenarios, cas
 | **Swag Labs**        | The application under test.                     | [Swag Labs](https://www.saucedemo.com/)                                                                     |
 | **Test Scenarios**   | Trello board documenting the test scenarios.    | [View on Trello](https://trello.com/invite/b/670f2e3a03f362e09e2abb63/ATTI78fe058e2b7c53a4dc9f7198a9f9980947A758DC/writing-test-scenarios-training) |
 | **Test Cases**       | Spreadsheet containing manually written cases.  | [View Test Cases](https://docs.google.com/spreadsheets/d/1OjMEX_3Wncul7BSHx7h771NHyIB7UPB02REYRP6j0rw/edit?usp=sharing)                              |
-| **Defect/Bug Report**| Trello board with logged defects.               | [View Defect Report](https://trello.com/invite/b/671b51ae8936cc58132b4134/ATTI78991937ced03f4044c9d78d4740ad54BD0A9989/defect-report)              |
+| **Defect/Bug Report**| Spreadsheet with logged defects.                | [View Defect Report](https://docs.google.com/spreadsheets/d/1qnoyH_dbMEtcT6uUFbC2IdJrSmD-cM_3uhimOrDz_Qg/edit?usp=sharing)              |
 
 ## Tech Stack
 
